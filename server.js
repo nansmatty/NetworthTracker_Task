@@ -1,7 +1,7 @@
 require('dotenv').config();
 const Hapi = require('@hapi/hapi');
 const Cookie = require('@hapi/cookie');
-const sequelize = require('./config/dbconfig');
+const { sequelize, connectWithRetry } = require('./config/dbconfig');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const transactionRoutes = require('./routes/transactionRoutes');
@@ -16,8 +16,8 @@ const init = async () => {
   });
 
   //Database connection
+  await connectWithRetry();
   await sequelize.sync({ force: false });
-  await sequelize.connectWithRetry();
 
   //Plugin Register (if required)
   // ------ Cookie
