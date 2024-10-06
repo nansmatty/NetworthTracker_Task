@@ -16,7 +16,8 @@ const init = async () => {
   });
 
   //Database connection
-  await sequelize.sync({ force: false });
+  // await sequelize.sync({ force: false });
+  await sequelize.connectWithRetry();
 
   //Plugin Register (if required)
   // ------ Cookie
