@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 
 const dbConfig = {
   dialect: 'mysql',
-  host: 'localhost',
+  host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
@@ -27,15 +27,15 @@ const connectWithRetry = async (attempts = 5) => {
   throw new Error('Failed to connect to the database after multiple attempts');
 };
 
-async function dbConnect() {
-  try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-}
+// async function dbConnect() {
+//   try {
+//     await sequelize.authenticate();
+//     console.log('Connection has been established successfully');
+//   } catch (error) {
+//     console.error('Unable to connect to the database:', error);
+//   }
+// }
 
-dbConnect();
+// dbConnect();
 
 module.exports = { sequelize, connectWithRetry };
