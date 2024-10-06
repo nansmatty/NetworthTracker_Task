@@ -9,14 +9,14 @@ const transactionRoutes = require('./routes/transactionRoutes');
 const init = async () => {
   const server = Hapi.Server({
     port: 4000,
-    host: 'localhost',
+    host: '0.0.0.0',
     state: {
       strictHeader: false, // Cookie settings for both development and production
     },
   });
 
   //Database connection
-  // await sequelize.sync({ force: false });
+  await sequelize.sync({ force: false });
   await sequelize.connectWithRetry();
 
   //Plugin Register (if required)
@@ -39,9 +39,9 @@ const init = async () => {
   server.route([
     {
       method: 'GET',
-      path: '/',
+      path: '/api/health_check',
       handler: (request, h) => {
-        return 'HI';
+        return 'Health OK';
       },
     },
     ...authRoutes,
