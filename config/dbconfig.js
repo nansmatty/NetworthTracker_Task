@@ -1,16 +1,11 @@
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
 
-const dbConfig = {
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
   dialect: 'mysql',
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
-  username: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
-};
-
-const sequelize = new Sequelize(dbConfig);
+});
 
 const connectWithRetry = async (attempts = 5) => {
   while (attempts > 0) {
@@ -26,16 +21,5 @@ const connectWithRetry = async (attempts = 5) => {
   }
   throw new Error('Failed to connect to the database after multiple attempts');
 };
-
-// async function dbConnect() {
-//   try {
-//     await sequelize.authenticate();
-//     console.log('Connection has been established successfully');
-//   } catch (error) {
-//     console.error('Unable to connect to the database:', error);
-//   }
-// }
-
-// dbConnect();
 
 module.exports = { sequelize, connectWithRetry };

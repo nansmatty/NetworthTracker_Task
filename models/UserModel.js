@@ -24,9 +24,11 @@ const UserModel = sequelize.define(
     },
     phoneNumber: {
       type: DT.STRING,
+      allowNull: true,
     },
     address: {
       type: DT.STRING,
+      allowNull: true,
     },
   },
   {

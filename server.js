@@ -16,7 +16,6 @@ const init = async () => {
   });
 
   //Database connection
-  await connectWithRetry();
   await sequelize.sync({ force: false });
 
   //Plugin Register (if required)
@@ -42,6 +41,9 @@ const init = async () => {
       path: '/api/health_check',
       handler: (request, h) => {
         return 'Health OK';
+      },
+      options: {
+        auth: false, // No authentication needed for registration
       },
     },
     ...authRoutes,
