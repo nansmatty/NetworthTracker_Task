@@ -4,7 +4,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "rundb": "node config/dbconfig.js"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Narayan Maaity",
@@ -27,6 +27,8 @@
     "sequelize": "^6.37.4"
   },
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.7",
+    "sinon": "^19.0.2"
   }
 }
