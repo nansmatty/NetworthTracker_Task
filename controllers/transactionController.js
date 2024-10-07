@@ -1,4 +1,4 @@
-const { Boom } = require('@hapi/boom');
+const Boom = require('@hapi/boom');
 const transactionSchema = require('../validation/transactionValidation');
 const TransactionModel = require('../models/TranscationModel');
 
