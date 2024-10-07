@@ -2,7 +2,7 @@ const { DataTypes: DT } = require('sequelize');
 const { sequelize } = require('../config/dbconfig');
 
 const UserModel = sequelize.define(
-  'UserModel',
+  'UserModels',
   {
     id: {
       type: DT.UUID,

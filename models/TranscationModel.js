@@ -12,7 +12,7 @@ const TransactionModel = sequelize.define(
     userId: {
       type: DT.UUID,
       references: {
-        model: 'UserModel',
+        model: 'UserModels',
         key: 'id',
       },
     },
@@ -25,9 +25,11 @@ const TransactionModel = sequelize.define(
     },
     description: {
       type: DT.STRING,
+      allowNull: true,
     },
     category: {
       type: DT.STRING,
+      allowNull: true,
     },
   },
   {
