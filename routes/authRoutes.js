@@ -9,6 +9,14 @@ const authRoutes = [
       auth: false, // No authentication needed for registration
     },
   },
+  {
+    method: 'POST',
+    path: '/api/auth/login',
+    handler: authController.userLogin,
+    options: {
+      auth: false, // No authentication needed for registration
+    },
+  },
 ];
 
 module.exports = authRoutes;
