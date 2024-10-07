@@ -30,6 +30,11 @@ jobs:
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/networth-tracker:latest .
 
-      # Step 5: Push Docker image to Docker Hub
+        # Step 5: Run Tests inside Docker Container
+      - name: Run tests
+        run: |
+          docker run --rm ${{ secrets.DOCKER_USERNAME }}/networth-tracker:latest npm test
+
+      # Step 6: Push Docker image to Docker Hub
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/networth-tracker:latest
